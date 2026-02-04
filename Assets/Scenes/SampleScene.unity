@@ -762,8 +762,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 5
-  horizontalInput: 0
-  verticalInput: 0
+  jumpHeight: 1.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  groundRadius: 0.2
 --- !u!1 &1791983147
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +779,7 @@ GameObject:
   - component: {fileID: 1791983150}
   - component: {fileID: 1791983149}
   - component: {fileID: 1791983148}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GROUND
   m_TagString: Untagged
   m_Icon: {fileID: 0}
