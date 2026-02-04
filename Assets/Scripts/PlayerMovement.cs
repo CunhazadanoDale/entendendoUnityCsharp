@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 moveDirection = new Vector3(horizontalInput, 0, verticalInput);
 
-        if(mooveDirection != Vector3.zero)
+        if(moveDirection != Vector3.zero)
         {
             transform.forward = moveDirection;
         }
