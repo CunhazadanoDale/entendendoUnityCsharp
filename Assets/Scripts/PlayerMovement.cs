@@ -67,6 +67,5 @@ public class PlayerMovement : MonoBehaviour
         // Atualiza o parâmetro "Speed" do Animator com a magnitude do vetor de movimento
         animator.SetBool("grounded", isGrounded);
         animator.SetFloat("speed", moveDirection.magnitude);
-
     }
 }
