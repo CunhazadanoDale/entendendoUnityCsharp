@@ -31,14 +31,16 @@ public class PlayerMovement : MonoBehaviour
         // e groundLayer eh a camada que representa o chão
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundRadius, groundLayer);
 
-        // evita cair infinitamente
-        // se a velocidade do jogador for negativa (caindo) e ele estiver no chão,
-        // entao a velocidade do jogador eh zerada para evitar que ele caia infinitamente
-        if(playerVelocity.y < 0 && isGrounded)
-        {
-            playerVelocity.y = 0f;
-        }
+        playerJump(isGrounded);
+        playerMove();
 
+        // Atualiza o parâmetro "Speed" do Animator com a magnitude do vetor de movimento
+        animator.SetBool("grounded", isGrounded);
+    }
+
+
+    public void playerMove() 
+    {
         // pega o input do teclado para movimento horizontal e vertical
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
@@ -53,6 +55,20 @@ public class PlayerMovement : MonoBehaviour
             transform.forward = moveDirection;
         }
 
+        controller.Move(moveDirection * speed * Time.deltaTime);
+        animator.SetFloat("speed", moveDirection.magnitude);
+    }
+
+    public void playerJump(bool isGrounded)
+    {
+        // evita cair infinitamente
+        // se a velocidade do jogador for negativa (caindo) e ele estiver no chão,
+        // entao a velocidade do jogador eh zerada para evitar que ele caia infinitamente
+        if(playerVelocity.y < 0 && isGrounded)
+        {
+            playerVelocity.y = 0f;
+        }
+
         // se o jogador apertar o botao de pulo e estiver no chao,
         // entao o codigo calcula a velocidade de pulo usando a formula da fisica para pulo: v = sqrt(h * -2 * g)
         if(Input.GetButtonDown("Jump") && isGrounded)
@@ -61,11 +77,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(moveDirection * speed * Time.deltaTime);
         controller.Move(playerVelocity * Time.deltaTime);
-
-        // Atualiza o parâmetro "Speed" do Animator com a magnitude do vetor de movimento
-        animator.SetBool("grounded", isGrounded);
-        animator.SetFloat("speed", moveDirection.magnitude);
     }
 }
