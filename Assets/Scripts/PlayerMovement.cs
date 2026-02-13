@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         // entao a velocidade do jogador eh zerada para evitar que ele caia infinitamente
         if(playerVelocity.y < 0 && isGrounded)
         {
-            playerVelocity.y = 0f;
+            playerVelocity.y = -2f;
         }
 
         // se o jogador apertar o botao de pulo e estiver no chao,
