@@ -26,6 +26,7 @@ public class PickupThings : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Coin"))
         {
+            AudioManager.instance.PlaySfx(0);
             Instantiate(scoreEffect, other.transform.position, Quaternion.identity);
             coinScore += scoreAmount;
             scoreText.text = "SCORE: " + coinScore.ToString();
