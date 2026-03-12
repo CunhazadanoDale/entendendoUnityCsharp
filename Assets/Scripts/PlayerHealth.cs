@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage()
     {
         Instantiate(damageEffect, transform.position, Quaternion.identity);
+        AudioManager.instance.PlaySfx(1);
 
         currentHealth -= damageAmount;
         healthBar.SetHealth(currentHealth);
